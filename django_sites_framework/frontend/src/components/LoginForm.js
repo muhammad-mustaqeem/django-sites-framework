@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import styled from "styled-components";
 import {connect} from "react-redux";
 import {Redirect, Link} from "react-router-dom";
+import {loginUser} from "../api/userApi";
 
 const CenteredDiv = styled.div`
 margin-top: 10%;
@@ -44,12 +45,12 @@ class LoginForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const passwordField = document.getElementById('password');
-        // if (!this.validate()) {
-        //     this.props.loginUserProp({
-        //         username: this.state.username,
-        //         password: passwordField.value,
-        //     });
-        // }
+        if (!this.validate()) {
+            this.props.loginUserProp({
+                username: this.state.username,
+                password: passwordField.value,
+            });
+        }
     };
 
     loginForm = () => {
@@ -87,11 +88,21 @@ class LoginForm extends Component {
 
     render() {
         if (this.props.isAuthenticated) {
-            return (<Redirect to='/'/>);
+            return (<Redirect to='/home'/>);
         } else {
             return this.loginForm();
         }
     }
 }
 
-export default LoginForm;
+const mapStateToProps = (state) => {
+    const {isAuthenticated} = state.user;
+    return {isAuthenticated};
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    loginUserProp: (data) => loginUser(dispatch, data),
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

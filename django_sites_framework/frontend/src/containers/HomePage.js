@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {NavBar} from '../components/Navbar';
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
@@ -12,6 +11,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Navbar from "../components/Navbar";
 
 
 class HomePage extends Component {
@@ -33,7 +33,7 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <NavBar/>
+                <Navbar/>
                 <Container component="main" maxWidth="lg">
                     <CssBaseline/>
                     <Grid container spacing={1} alignContent="center">
