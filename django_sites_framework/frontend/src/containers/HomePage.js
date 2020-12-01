@@ -6,10 +6,11 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ContentList from "../components/ContentList";
 import {connect} from "react-redux";
-import {fetchImageContent} from "../api/contentApi";
+import {fetchImageContent, fetchVideoContent} from "../api/contentApi";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import Button from "@material-ui/core/Button";
 
 class HomePage extends Component {
     state  = {
@@ -19,6 +20,7 @@ class HomePage extends Component {
     componentDidMount()
     {
         this.props.fetchImagesProps();
+        this.props.fetchVideosProps();
     }
 
     handleChange = field =>{
@@ -47,16 +49,17 @@ class HomePage extends Component {
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             <Typography component="h1" variant="h3" align='center'>Images</Typography>
+                            <Button variant='outline-primary'>Add Image</Button>
                             <hr/>
                             <Container>
-                            {(this.state.images)?<ContentList content={this.props.imageContent}/>:'Please check Image Flag to fetch Images'}
+                            {(this.state.images)?<ContentList type="image" content={this.props.imageContent}/>:'Please check Image Flag to fetch Images'}
                             </Container>
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             <Typography component="h1" variant="h3" align='center'>Videos</Typography>
                             <hr/>
                             <Container>
-                            {(this.state.videos)?<ContentList content={this.props.videoContent}/>:'Please check Video Flag to fetch Videos'}
+                            {(this.state.videos)?<ContentList type="video"  content={this.props.videoContent}/>:'Please check Video Flag to fetch Videos'}
                             </Container>
                         </Grid>
                     </Grid>
@@ -74,6 +77,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     fetchImagesProps: () => fetchImageContent(dispatch),
+    fetchVideosProps: () => fetchVideoContent(dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -1,4 +1,4 @@
-import {CREATE_IMAGE, DELETE_IMAGE, FETCH_IMAGES} from "../actions/actionTypes";
+import {CREATE_IMAGE, DELETE_IMAGE, FETCH_IMAGES, FETCH_VIDEOS} from "../actions/actionTypes";
 
 let initialState = {
     imageContent : [],
@@ -12,6 +12,11 @@ const contentReducer = (state = initialState, action) =>{
                 ...state,
                 imageContent : action.payload.data,
             }
+        case FETCH_VIDEOS:
+            return {
+                ...state,
+                videoContent : action.payload.data,
+            }
         case CREATE_IMAGE:
             return {
                 ...state,
@@ -20,7 +25,7 @@ const contentReducer = (state = initialState, action) =>{
         case DELETE_IMAGE:
             return {
                 ...state,
-                imageContent : this.imageContent.filter(image => parseInt(image.id) !== parseInt(action.payload.data.id)),
+                imageContent : state.imageContent.filter(image => parseInt(image.id) !== parseInt(action.payload.data.id)),
             }
         default:
             return state;
