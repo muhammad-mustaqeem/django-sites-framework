@@ -6,13 +6,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {connect} from "react-redux";
-import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import Container from "@material-ui/core/Container";
-import {uploadImageContent} from "../api/contentApi";
+import {uploadImageContent, uploadVideoContent} from "../api/contentApi";
 
 class UploadContentDialogBox extends Component {
     state = {
@@ -34,7 +32,9 @@ class UploadContentDialogBox extends Component {
 
     handleUpload = () => {
         this.handleToggle();
-        this.props.uploadImageContentProp(this.getFormFromState());
+        (this.props.type === "image") ?
+            this.props.uploadImageContentProp(this.getFormFromState()) :
+            this.props.uploadVideoContentProp(this.getFormFromState());
     };
 
     handleChange = field => {
@@ -49,7 +49,8 @@ class UploadContentDialogBox extends Component {
     render() {
         return (
             <Container component="main" maxWidth="md">
-                <Button variant="contained" color="default" startIcon={<CloudUploadIcon/>} onClick={this.handleToggle}>Upload</Button>
+                <Button variant="contained" color="default" startIcon={<CloudUploadIcon/>}
+                        onClick={this.handleToggle}>Upload</Button>
                 <Dialog open={this.state.open} onClose={this.handleToggle} aria-labelledby="alert-dialog-title"
                         aria-describedby="alert-dialog-description">
                     <DialogTitle id="alert-dialog-title">UPLOAD new content</DialogTitle>
@@ -64,14 +65,17 @@ class UploadContentDialogBox extends Component {
                                     </Grid>
                                     <Grid item xs={12} alignContent="center">
                                         {(this.props.type === "image") ?
-                                            <input accept="image/*" id="contentUploader" type="file" style={{display: 'none'}} onChange={this.handleFileUpload}/> :
-                                            <input accept="video/mp4,video/x-m4v,video/*" id="contentUploader" type="file" style={{display: 'none'}} onChange={this.handleFileUpload}/>}
+                                            <input accept="image/*" id="contentUploader" type="file"
+                                                   style={{display: 'none'}} onChange={this.handleFileUpload}/> :
+                                            <input accept="video/mp4,video/x-m4v,video/*" id="contentUploader"
+                                                   type="file" style={{display: 'none'}}
+                                                   onChange={this.handleFileUpload}/>}
                                         <label htmlFor="contentUploader">
                                             <Button variant="contained" color="primary" component="span">Upload</Button>
                                         </label>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        {(this.state.file)?<strong>{this.state.file.name}</strong>:''}
+                                        {(this.state.file) ? <strong>{this.state.file.name}</strong> : ''}
                                     </Grid>
                                 </Grid>
                             </form>
@@ -94,7 +98,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        uploadImageContentProp: (data) =>  uploadImageContent(dispatch, data),
+        uploadImageContentProp: (data) => uploadImageContent(dispatch, data),
+        uploadVideoContentProp: (data) => uploadVideoContent(dispatch, data),
     }
 }
 

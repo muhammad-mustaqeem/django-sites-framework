@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Typography from "@material-ui/core/Typography";
 import CancelIcon from '@material-ui/icons/Cancel';
 import {connect} from "react-redux";
-import {deleteImageContent} from "../api/contentApi";
+import {deleteImageContent, deleteVideoContent} from "../api/contentApi";
 
 const ContentImage = styled.img`
 max-width: 180px;
@@ -19,19 +19,19 @@ class Content extends Component {
         if (this.props.type === "image"){
             this.props.deleteImageProp(this.props.content.id)
         }else {
-            console.log("VIDEO");
+            this.props.deleteVideoProp(this.props.content.id)
         }
     }
     render() {
         return (
             <Grid container spacing={1}>
-                <Grid item xs={12} sm={12} md={5} lg={5} xl={5} align='center'>
+                <Grid item xs={12} sm={12} md={6} lg={5} xl={5} align='center'>
                     {(this.props.type === "image")?
                         <ContentImage src={this.props.content.file} alt={this.props.content.caption}/>:
-                        <video width="230" height="150" controls><source src={this.props.content.file}/></video>
+                        <video width="230" height="180" controls><source src={this.props.content.file}/></video>
                     }
                 </Grid>
-                <Grid item xs={11} sm={11} md={6} lg={6} xl={6}>
+                <Grid item xs={11} sm={11} md={5} lg={6} xl={6}>
                     <Typography component="h6" variant="h6">{this.props.content.caption}</Typography>
                 </Grid>
                 <Grid item xs={1} sm={1} md={1} lg={1} xl={1}>
@@ -44,6 +44,7 @@ class Content extends Component {
 
 const mapDispatchToProps = dispatch =>({
     deleteImageProp : (data) => deleteImageContent(dispatch, data),
+    deleteVideoProp : (data) => deleteVideoContent(dispatch, data),
 })
 
 export default connect(null,mapDispatchToProps)(Content);

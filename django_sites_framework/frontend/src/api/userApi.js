@@ -1,6 +1,5 @@
 import {loginUserUrl, logoutUserUrl, registerUserUrl} from "./urls";
 import {login_user, logout_user, register_user} from "../actions/userActions";
-import myHeaders from "./header";
 
 export const loginUser = (dispatch, data) => {
     fetch(loginUserUrl, {
@@ -26,14 +25,17 @@ export const registerUser = (dispatch, data) => {
 
 
 export const logoutUser = (dispatch) => {
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", localStorage.getItem('token'));
+    myHeaders.append("Content-Type", "application/json");
+
     const requestOptions = {
         method: 'POST',
         headers: myHeaders,
-        redirect: 'follow'
     };
 
     fetch(logoutUserUrl, requestOptions)
         .then(response => response.json())
-        .then(json => console.log(json));
+        .then(json => dispatch(logout_user(json)));
 }
 

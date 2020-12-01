@@ -1,4 +1,4 @@
-const baseUrl = 'http://127.0.0.1:7000/';
+const baseUrl = 'http://127.0.0.1:8000/';
 
 export const loginUserUrl = baseUrl + 'user/auth/login/';
 export const registerUserUrl = baseUrl + 'user/api/';
