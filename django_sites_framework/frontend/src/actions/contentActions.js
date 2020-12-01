@@ -29,4 +29,3 @@ export const deleteVideo = (payload) => ({
     type: DELETE_VIDEO,
     payload: payload
 })
-

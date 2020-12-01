@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = ({user, isAuthenticated, logoutUserProp}) => {
     const classes = useStyles();
-    console.log(isAuthenticated);
     return (
         <div className={classes.root}>
             <AppBar position="static" color="default">

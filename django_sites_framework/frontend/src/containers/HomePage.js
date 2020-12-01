@@ -9,8 +9,6 @@ import {fetchImageContent, fetchVideoContent} from "../api/contentApi";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-import Button from "@material-ui/core/Button";
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Navbar from "../components/Navbar";
 import {Redirect} from "react-router-dom";
 import UploadContentDialogBox from "../components/UploadContentDialogBox";
@@ -42,18 +40,16 @@ class HomePage extends Component {
                         <Grid item xs={12} align="center">
                             <FormGroup row>
                                 <FormControlLabel
-                                    control={<Switch checked={this.state.images} onChange={this.handleChange}
-                                                     name="images" color="primary"/>}
+                                    control={<Switch checked={this.state.images} onChange={this.handleChange} name="images" color="primary"/>}
                                     label="Fetch Images"
                                 />
                                 <FormControlLabel
-                                    control={<Switch checked={this.state.videos} onChange={this.handleChange}
-                                                     name="videos" color="primary"/>}
+                                    control={<Switch checked={this.state.videos} onChange={this.handleChange} name="videos" color="primary"/>}
                                     label="Fetch Videos"
                                 />
                             </FormGroup>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                        <Grid item xs={12} sm={12} md={6} lg={6} xl={6} alignContent="center" alignItems="center">
                             <Typography component="h1" variant="h3" align='center'>Images</Typography>
                             <UploadContentDialogBox type="image"/>
                             <hr/>

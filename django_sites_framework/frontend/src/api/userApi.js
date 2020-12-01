@@ -38,4 +38,3 @@ export const logoutUser = (dispatch) => {
         .then(response => response.json())
         .then(json => dispatch(logout_user(json)));
 }
-

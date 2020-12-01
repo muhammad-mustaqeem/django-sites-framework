@@ -23,3 +23,6 @@ class CustomUser(PermissionsMixin, AbstractBaseUser):
 
     class Meta:
         db_table = 'user'
+
+    def __str__(self):
+        return f"Username = {self.username}  - EMAIL = {self.email}"

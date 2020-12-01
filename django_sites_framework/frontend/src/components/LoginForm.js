@@ -104,5 +104,4 @@ const mapDispatchToProps = (dispatch) => ({
     loginUserProp: (data) => loginUser(dispatch, data),
 })
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
