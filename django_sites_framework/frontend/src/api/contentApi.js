@@ -1,5 +1,5 @@
 import {ImageContentUrl, VideoContentUrl} from "./urls";
-import {deleteImage, fetchImages, fetchVideos} from "../actions/contentActions";
+import {deleteImage, fetchImages, fetchVideos, uploadImage} from "../actions/contentActions";
 import myHeaders from "./header";
 
 export const fetchImageContent = (dispatch) => {
@@ -25,4 +25,16 @@ export const deleteImageContent = (dispatch, data) => {
     fetch(ImageContentUrl + data + "/", requestOptions)
         .then(response => response.json())
         .then(json => dispatch(deleteImage(json)));
+}
+
+export const uploadImageContent = (dispatch, data) => {
+    const requestOptions = {
+        method: 'POST',
+        body: data,
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+    fetch(ImageContentUrl, requestOptions)
+        .then(response => response.json())
+        .then(json => dispatch(uploadImage(json)));
 }

@@ -78,7 +78,7 @@ class LoginForm extends Component {
                                     onClick={this.handleSubmit}>Sign In</Button>
                         </Grid>
                         <Grid item>
-                            <span>Don't have an account? <Link to="/register/">Sign Up</Link></span>
+                            <span>Don't have an account? <Link to="/register">Sign Up</Link></span>
                         </Grid>
                     </Grid>
                 </form>

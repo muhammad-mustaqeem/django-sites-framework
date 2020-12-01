@@ -1,8 +1,9 @@
-import {LOGIN_USER} from "../actions/actionTypes";
+import {LOGIN_USER, LOGOUT_USER, REGISTER_USER} from "../actions/actionTypes";
 
 let initialState = {
     user: null,
     isAuthenticated: false,
+    serverSideErrors: [],
 }
 
 const userReducer = (state = initialState, action) => {
@@ -14,6 +15,26 @@ const userReducer = (state = initialState, action) => {
                 isAuthenticated: true,
                 user: action.payload.data.user
             }
+        case LOGOUT_USER:
+            localStorage.removeItem('token');
+            return {
+                serverSideErrors: [],
+                isAuthenticated: false,
+                user: null
+            }
+        case REGISTER_USER:
+            if (action.payload.status_code === 201) {
+                localStorage.setItem('token', "Token " + action.payload.data.auth_token);
+                return {
+                    ...state,
+                    user: action.payload.data.user,
+                    isAuthenticated: true,
+                };
+            }
+            return {
+                ...state,
+                serverSideErrors: action.payload,
+            };
         default:
             return state
     }

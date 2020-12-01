@@ -20,12 +20,14 @@ def destroy_authentication_token(request):
 
 class UserAuthenticationViewSet(viewsets.ViewSet):
     serializer_class = UserAuthSerializer
-    queryset = CustomUser.objects.filter(is_active=True)
+    queryset = CustomUser.objects.all()
     permission_classes = (AllowAny,)
 
     @staticmethod
     def is_user_authenticated(request):
-        return request.user.is_authenticated
+        if request.user.is_authenticated and request.user != 'AnonymousUser':
+            return True
+        return False
 
     @action(methods=['POST', ], detail=False)
     def login(self, request, *args, **kwargs):

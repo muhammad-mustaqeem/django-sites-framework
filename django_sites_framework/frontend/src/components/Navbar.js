@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {connect} from "react-redux";
+import {logoutUser} from "../api/userApi";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const NavBar = ({user, isAuthenticated}) => {
+const NavBar = ({user, isAuthenticated, logoutUserProp}) => {
     const classes = useStyles();
     console.log(isAuthenticated);
     return (
@@ -26,8 +27,8 @@ const NavBar = ({user, isAuthenticated}) => {
                         Sites API
                     </Typography>
                     {(!isAuthenticated) ?
-                        <div><Button color="inherit">Register</Button><Button color="inherit" href='/'>Login</Button></div> :
-                        <div><Button color="inherit">Logout - {user.username}</Button></div>
+                        <div><Button color="inherit" href="/register">Register</Button><Button color="inherit" href='/'>Login</Button></div> :
+                        <div><Button color="inherit" onClick={()=> logoutUserProp()}>Logout - {user.username}</Button></div>
                     }
                 </Toolbar>
             </AppBar>
@@ -40,4 +41,8 @@ const mapStateToProps = state => {
     return {user, isAuthenticated};
 }
 
-export default connect(mapStateToProps, null)(NavBar);
+const mapDispatchToProps = dispatch => ({
+    logoutUserProp : () => logoutUser(dispatch),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
