@@ -31,8 +31,7 @@ class UserAuthenticationViewSet(viewsets.ViewSet):
 
     @action(methods=['POST', ], detail=False)
     def login(self, request, *args, **kwargs):
-        user = authenticate(username=request.data['username'],
-                            password=request.data['password'])
+        user = authenticate(username=request.data['username'], password=request.data['password'])
         if user is not None:
             login(request, user)
             return get_response(status.HTTP_200_OK, 'SUCCESS',
@@ -43,8 +42,8 @@ class UserAuthenticationViewSet(viewsets.ViewSet):
     @action(methods=['POST', ], detail=False)
     def logout(self, request, *args, **kwargs):
         if self.is_user_authenticated(request):
-            logout(request)
             destroy_authentication_token(request)
+            logout(request)
             return get_response(status.HTTP_200_OK, 'SUCCESS', data=[])
         return get_response(status.HTTP_404_NOT_FOUND, 'UNAUTHENTICATED', data=[])
 
