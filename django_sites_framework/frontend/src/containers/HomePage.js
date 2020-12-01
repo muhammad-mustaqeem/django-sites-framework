@@ -11,6 +11,8 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Button from "@material-ui/core/Button";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+
 
 class HomePage extends Component {
     state  = {
@@ -49,7 +51,13 @@ class HomePage extends Component {
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             <Typography component="h1" variant="h3" align='center'>Images</Typography>
-                            <Button variant='outline-primary'>Add Image</Button>
+                            <Button
+                                variant="contained"
+                                color="default"
+                                startIcon={<CloudUploadIcon/>}
+                            >
+                                Upload Image
+                            </Button>
                             <hr/>
                             <Container>
                             {(this.state.images)?<ContentList type="image" content={this.props.imageContent}/>:'Please check Image Flag to fetch Images'}
@@ -57,6 +65,9 @@ class HomePage extends Component {
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                             <Typography component="h1" variant="h3" align='center'>Videos</Typography>
+                            <Button variant="contained" color="default" startIcon={<CloudUploadIcon/>}>
+                                Upload Video
+                            </Button>
                             <hr/>
                             <Container>
                             {(this.state.videos)?<ContentList type="video"  content={this.props.videoContent}/>:'Please check Video Flag to fetch Videos'}
