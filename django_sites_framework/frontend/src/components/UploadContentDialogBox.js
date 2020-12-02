@@ -51,8 +51,7 @@ class UploadContentDialogBox extends Component {
             <Container component="main" maxWidth="md">
                 <Button variant="contained" color="default" startIcon={<CloudUploadIcon/>}
                         onClick={this.handleToggle}>Upload</Button>
-                <Dialog open={this.state.open} onClose={this.handleToggle} aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description">
+                <Dialog open={this.state.open} onClose={this.handleToggle}>
                     <DialogTitle id="alert-dialog-title">UPLOAD new content</DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">

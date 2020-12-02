@@ -11,7 +11,6 @@ import Navbar from "../components/Navbar";
 import {Redirect} from "react-router-dom";
 import ContentContainer from "../components/ContentContainer";
 
-
 class HomePage extends Component {
     state = {
         images: false,
@@ -31,7 +30,7 @@ class HomePage extends Component {
 
     renderContent = () => {
         return (
-            <div>
+            <React.Fragment>
                 <Navbar/>
                 <Container component="main" maxWidth="lg">
                     <CssBaseline/>
@@ -58,7 +57,7 @@ class HomePage extends Component {
                         </Grid>
                     </Grid>
                 </Container>
-            </div>
+            </React.Fragment>
         );
     }
 

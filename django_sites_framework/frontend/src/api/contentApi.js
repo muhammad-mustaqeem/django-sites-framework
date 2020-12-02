@@ -22,6 +22,7 @@ export const deleteImageContent = (dispatch, data) => {
         headers: myHeaders,
         redirect: 'follow'
     };
+
     fetch(ImageContentUrl + data + "/", requestOptions)
         .then(response => response.json())
         .then(json => dispatch(deleteImage(json)));
@@ -33,6 +34,7 @@ export const deleteVideoContent = (dispatch, data) => {
         headers: myHeaders,
         redirect: 'follow'
     };
+
     fetch(VideoContentUrl + data + "/", requestOptions)
         .then(response => response.json())
         .then(json => dispatch(deleteVideo(json)));
@@ -45,6 +47,7 @@ export const uploadImageContent = (dispatch, data) => {
         headers: myHeaders,
         redirect: 'follow'
     };
+
     fetch(ImageContentUrl, requestOptions)
         .then(response => response.json())
         .then(json => dispatch(uploadImage(json)));

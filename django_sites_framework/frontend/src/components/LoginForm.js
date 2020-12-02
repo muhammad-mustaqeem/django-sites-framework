@@ -96,7 +96,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const {isAuthenticated} = state.user;
+    const { isAuthenticated } = state.user;
     return {isAuthenticated};
 }
 

@@ -1,6 +1,7 @@
 import {loginUserUrl, logoutUserUrl, registerUserUrl} from "./urls";
 import {login_user, logout_user, register_user} from "../actions/userActions";
 
+
 export const loginUser = (dispatch, data) => {
     fetch(loginUserUrl, {
         method: 'POST',

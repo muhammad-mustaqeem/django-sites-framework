@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import {store} from "./store";
 import RegistrationPage from "./containers/RegistrationPage";
 
-function App() {
+const App = () => {
     return (
         <Provider store={store}>
             <Router>

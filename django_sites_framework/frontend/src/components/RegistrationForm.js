@@ -105,20 +105,19 @@ class RegistrationForm extends Component {
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6} xl={6}>
                                 <TextField variant="outlined" required fullWidth id="first_name" label="First Name"
-                                           name="first_name" autoComplete="fname"
-                                           inputProps={{pattern: "[a-z|A-Z]{8,}"}} value={this.state.first_name}
+                                           name="first_name" autoComplete="fname" value={this.state.first_name}
                                            onChange={this.handleChange} error={this.state.first_nameError}
                                            helperText={this.state.first_nameError}/>
                             </Grid>
                             <Grid item xs={12} sm={6} lg={6} xl={6}>
                                 <TextField variant="outlined" required fullWidth id="last_name" label="Last Name"
-                                           inputProps={{pattern: "[a-z|A-Z]{8,}"}} name="last_name" autoComplete="lname"
+                                           name="last_name" autoComplete="lname"
                                            value={this.state.last_name} error={this.state.last_nameError}
                                            helperText={this.state.last_nameError} onChange={this.handleChange}/>
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField variant="outlined" required fullWidth id="username" label="Username"
-                                           inputProps={{pattern: "[a-z|A-Z|0-9]{8,}"}} name="username"
+                                           name="username"
                                            autoComplete="username" value={this.state.username}
                                            error={this.state.usernameError} helperText={this.state.usernameError}
                                            onChange={this.handleChange}/>
@@ -131,13 +130,13 @@ class RegistrationForm extends Component {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField variant="outlined" required fullWidth name="password" label="Password"
-                                           inputProps={{pattern: "(.){8,}"}} type="password" id="password"
+                                           type="password" id="password"
                                            value={this.state.password} error={this.state.passwordError}
                                            helperText={this.state.passwordError} onChange={this.handleChange}/>
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField variant="outlined" required fullWidth name="password2"
-                                           inputProps={{pattern: "(.){8,}"}} label="Confirm Password" type="password"
+                                           label="Confirm Password" type="password"
                                            id="confirm-password" error={this.state.confirmPasswordError}
                                            helperText={this.state.confirmPasswordError}/>
                             </Grid>

@@ -33,6 +33,7 @@ const userReducer = (state = initialState, action) => {
             }
             return {
                 ...state,
+                user: null,
                 serverSideErrors: action.payload,
             };
         default:

@@ -5,6 +5,6 @@ import contentReducer from "./contentReducer";
 const rootReducer = combineReducers({
     user: userReducer,
     content: contentReducer,
-})
+});
 
 export default rootReducer;

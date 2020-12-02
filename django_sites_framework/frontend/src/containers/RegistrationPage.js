@@ -4,10 +4,10 @@ import RegistrationForm from "../components/RegistrationForm";
 
 const RegistrationPage = () => {
     return (
-        <div>
+        <React.Fragment>
             <NavBar/>
             <RegistrationForm/>
-        </div>
+        </React.Fragment>
     );
 }
 

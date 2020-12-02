@@ -13,7 +13,7 @@ margin: 2%;
 const ContentContainer = (props) => {
     return (
         <React.Fragment>
-            <Typography component="h1" variant="h3" align='center'>{props.type}</Typography>
+            <Typography component="h3" variant="h3" align='center'>{props.type}</Typography>
             <CenteredDiv><UploadContentDialogBox type={props.type}/></CenteredDiv>
             <hr/>
             <Container>

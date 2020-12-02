@@ -4,10 +4,10 @@ import NavBar from "../components/Navbar";
 
 const LoginPage = () => {
     return (
-        <div>
+        <React.Fragment>
             <NavBar/>
             <LoginForm/>
-        </div>
+        </React.Fragment>
     );
 }
 
