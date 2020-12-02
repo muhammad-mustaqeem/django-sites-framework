@@ -95,7 +95,7 @@ class RegistrationForm extends Component {
 
     user_registration_form = () => {
         return (
-            <Container component="main" maxWidth="sm">
+            <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <CenteredDiv>
                     <form>

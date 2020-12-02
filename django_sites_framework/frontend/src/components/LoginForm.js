@@ -54,7 +54,7 @@ class LoginForm extends Component {
     };
 
     loginForm = () => {
-        return (<Container component="main" maxWidth="sm">
+        return (<Container component="main" maxWidth="xs">
             <CssBaseline/>
             <CenteredDiv>
                 <form>

@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import ContentList from "../components/ContentList";
 import {connect} from "react-redux";
 import {fetchImageContent, fetchVideoContent} from "../api/contentApi";
 import FormGroup from "@material-ui/core/FormGroup";
@@ -11,7 +9,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import Navbar from "../components/Navbar";
 import {Redirect} from "react-router-dom";
-import UploadContentDialogBox from "../components/UploadContentDialogBox";
+import ContentContainer from "../components/ContentContainer";
 
 
 class HomePage extends Component {
@@ -20,14 +18,15 @@ class HomePage extends Component {
         videos: false,
     }
 
-    componentDidMount() {
-        this.props.fetchImagesProps();
-        this.props.fetchVideosProps();
-    }
-
     handleChange = field => {
-        console.log(field.target.checked)
         this.setState({...this.state, [field.target.name]: field.target.checked})
+
+        if (this.state.images){
+            this.props.fetchImagesProps();
+        }
+        if (this.state.videos){
+            this.props.fetchVideosProps();
+        }
     }
 
     renderContent = () => {
@@ -38,32 +37,24 @@ class HomePage extends Component {
                     <CssBaseline/>
                     <Grid container spacing={1} alignContent="center">
                         <Grid item xs={12} align="center">
-                            <FormGroup row>
+                            <FormGroup row centered>
                                 <FormControlLabel
                                     control={<Switch checked={this.state.images} onChange={this.handleChange} name="images" color="primary"/>}
                                     label="Fetch Images"
+                                    labelPlacement="top"
                                 />
                                 <FormControlLabel
                                     control={<Switch checked={this.state.videos} onChange={this.handleChange} name="videos" color="primary"/>}
                                     label="Fetch Videos"
+                                    labelPlacement="top"
                                 />
                             </FormGroup>
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6} alignContent="center" alignItems="center">
-                            <Typography component="h1" variant="h3" align='center'>Images</Typography>
-                            <UploadContentDialogBox type="image"/>
-                            <hr/>
-                            <Container>
-                                {(this.state.images) ? <ContentList type="image" content={this.props.imageContent}/> : 'Please check Image Flag to fetch Images'}
-                            </Container>
+                            <ContentContainer type="image" populateContent={this.state.images} contentData={this.props.imageContent}/>
                         </Grid>
                         <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                            <Typography component="h1" variant="h3" align='center'>Videos</Typography>
-                            <UploadContentDialogBox type="video"/>
-                            <hr/>
-                            <Container>
-                                {(this.state.videos) ? <ContentList type="video" content={this.props.videoContent}/> : 'Please check Video Flag to fetch Videos'}
-                            </Container>
+                            <ContentContainer type="video" populateContent={this.state.videos} contentData={this.props.videoContent}/>
                         </Grid>
                     </Grid>
                 </Container>
