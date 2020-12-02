@@ -10,19 +10,35 @@ import {
 let initialState = {
     imageContent: [],
     videoContent: [],
+    isVideoContentAllowed: false,
+    isImageContentAllowed: false,
 }
 
 const contentReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_IMAGES:
+            if (action.payload.status_code === 200) {
+                return {
+                    ...state,
+                    imageContent: action.payload.data,
+                    isImageContentAllowed: true,
+                }
+            }
             return {
                 ...state,
-                imageContent: action.payload.data,
+                isImageContentAllowed: false,
             }
         case FETCH_VIDEOS:
+            if (action.payload.status_code === 200) {
+                return {
+                    ...state,
+                    videoContent: action.payload.data,
+                    isVideoContentAllowed: true,
+                }
+            }
             return {
                 ...state,
-                videoContent: action.payload.data,
+                isVideoContentAllowed: false,
             }
         case CREATE_IMAGE:
             return {
@@ -37,12 +53,12 @@ const contentReducer = (state = initialState, action) => {
         case DELETE_IMAGE:
             return {
                 ...state,
-                imageContent: state.imageContent.filter( image => parseInt(image.id) !== parseInt(action.payload.data.id)),
+                imageContent: state.imageContent.filter(image => parseInt(image.id) !== parseInt(action.payload.data.id)),
             }
         case DELETE_VIDEO:
             return {
                 ...state,
-                videoContent: state.videoContent.filter( video => parseInt(video.id) !== parseInt(action.payload.data.id)),
+                videoContent: state.videoContent.filter(video => parseInt(video.id) !== parseInt(action.payload.data.id)),
             }
         default:
             return state;

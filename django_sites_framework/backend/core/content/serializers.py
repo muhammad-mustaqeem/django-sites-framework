@@ -1,11 +1,12 @@
 from django.contrib.sites.models import Site
 from rest_framework import serializers
 from .models import Image, Video
+from custom_sites.models import CustomSite
 
 
 class SiteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Site
+        model = CustomSite
         fields = '__all__'
 
 

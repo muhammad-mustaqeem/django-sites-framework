@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'content',
+    'custom_sites',
     'user',
 ]
 
