@@ -25,4 +25,4 @@ class CustomUser(PermissionsMixin, AbstractBaseUser):
         db_table = 'user'
 
     def __str__(self):
-        return f"Username = {self.username} - EMAIL = {self.email}"
+        return f"USERNAME = {self.username} - EMAIL = {self.email}"

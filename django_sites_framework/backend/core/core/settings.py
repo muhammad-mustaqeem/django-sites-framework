@@ -5,9 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '_0uuuv)s)id*26i3n_&x^%@s2cidzj_=w&b+zynr0$1l8s7^*i'
 
 DEBUG = True
-
 SITE_ID = 1
-
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [

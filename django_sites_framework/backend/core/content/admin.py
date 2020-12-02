@@ -6,7 +6,7 @@ def mark_active(modeladmin, request, queryset):
     queryset.update(is_active=True)
 
 
-mark_active.short_description = "Mark Content as Active"
+mark_active.short_description = "Mark Content Active"
 
 
 class ImageAdmin(admin.ModelAdmin):

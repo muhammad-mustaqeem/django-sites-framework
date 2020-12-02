@@ -55,10 +55,8 @@ class UserModelViewSet(viewsets.ModelViewSet):
 
     @staticmethod
     def create_user(data):
-        user = CustomUser(username=data['username'],
-                          email=data['email'],
-                          first_name=data['first_name'],
-                          last_name=data['last_name'])
+        user = CustomUser(username=data['username'], email=data['email'],
+                          first_name=data['first_name'], last_name=data['last_name'])
         user.set_password(data['password'])
         user.save()
         return user
@@ -74,8 +72,7 @@ class UserModelViewSet(viewsets.ModelViewSet):
         if serializer.is_valid(raise_exception=True):
             user = self.create_user(serializer.validated_data)
             return get_response(status.HTTP_201_CREATED, 'SUCCESS',
-                                data={'auth_token': create_authentication_token(user),
-                                      'user': serializer.data})
+                                data={'auth_token': create_authentication_token(user), 'user': serializer.data})
 
     def destroy(self, request, *args, **kwargs):
         if request.user.is_authenticated:

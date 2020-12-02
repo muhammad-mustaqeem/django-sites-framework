@@ -15,7 +15,7 @@ class Image(models.Model):
         db_table = 'image'
 
     def __str__(self):
-        return f'Caption = {self.caption}'
+        return f'CAPTION = {self.caption}'
 
 
 class Video(models.Model):
@@ -30,4 +30,4 @@ class Video(models.Model):
         db_table = 'video'
 
     def __str__(self):
-        return f'Caption = {self.caption}'
+        return f'CAPTION = {self.caption}'

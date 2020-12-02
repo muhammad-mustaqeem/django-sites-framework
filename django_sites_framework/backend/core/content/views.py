@@ -10,6 +10,7 @@ from .serializers import ImageSerializer, VideoSerializer
 
 
 class ContentViewset(viewsets.ModelViewSet):
+
     @staticmethod
     def get_content_data(data):
         data['site'] = Site.objects.get_current().id

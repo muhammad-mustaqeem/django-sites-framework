@@ -5,8 +5,9 @@ from .models import CustomUser
 
 
 class UserAuthSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(min_length=5, required=True,
-                                     validators=[UniqueValidator(CustomUser.objects.all()), ])
+    username = serializers.CharField(min_length=5, required=True, validators=[
+        UniqueValidator(CustomUser.objects.all()),
+    ])
     password = serializers.CharField(required=True, min_length=8, write_only=True)
 
     class Meta:
@@ -15,10 +16,12 @@ class UserAuthSerializer(serializers.ModelSerializer):
 
 
 class UserModelSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(min_length=5, required=True,
-                                     validators=[UniqueValidator(CustomUser.objects.all()), ])
-    email = serializers.EmailField(max_length=50, required=True,
-                                   validators=[UniqueValidator(CustomUser.objects.all()), ])
+    username = serializers.CharField(min_length=5, required=True, validators=[
+        UniqueValidator(CustomUser.objects.all()),
+    ])
+    email = serializers.EmailField(max_length=50, required=True, validators=[
+        UniqueValidator(CustomUser.objects.all()),
+    ])
     password = serializers.CharField(required=True, min_length=8, write_only=True)
     first_name = serializers.CharField(required=True, max_length=20)
     last_name = serializers.CharField(required=True, max_length=20)

@@ -1,6 +1,5 @@
 from django.contrib.sites.models import Site
 from rest_framework import serializers
-
 from .models import Image, Video
 
 
