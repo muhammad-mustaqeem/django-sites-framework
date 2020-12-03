@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import {connect} from "react-redux";
-import {fetchImageContent, fetchVideoContent} from "../api/contentApi";
+import {fetchImageContent, fetchMainContent, fetchVideoContent} from "../api/contentApi";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
@@ -18,8 +18,9 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchImagesProps();
-        this.props.fetchVideosProps();
+        // this.props.fetchImagesProps();
+        // this.props.fetchVideosProps();
+        this.props.fetchContentProps();
     }
 
     handleChange = field => {
@@ -39,25 +40,25 @@ class HomePage extends Component {
                 <Navbar/>
                 <Container component="main" maxWidth="lg">
                     <CssBaseline/>
-                    <Grid container spacing={1} alignContent="center">
-                        <Grid item xs={12} align="center">
+                    <Grid container spacing={3} alignContent="center">
+                        <Grid item xs={12}>
                             <FormGroup row centered>
-                                {(this.props.isImageContentAllowed) ?<FormControlLabel
+                                {(this.props.isImageContentAllowed) ? <FormControlLabel
                                     control={<Switch checked={this.state.images} onChange={this.handleChange}
                                                      name="images" color="primary"/>}
                                     label="Fetch Images"
                                     labelPlacement="top"
-                                />:''}
-                                {(this.props.isVideoContentAllowed) ?<FormControlLabel
+                                /> : ''}
+                                {(this.props.isVideoContentAllowed) ? <FormControlLabel
                                     control={<Switch checked={this.state.videos} onChange={this.handleChange}
                                                      name="videos" color="primary"/>}
                                     label="Fetch Videos"
                                     labelPlacement="top"
-                                />:''}
+                                /> : ''}
                             </FormGroup>
                         </Grid>
                         {(this.props.isImageContentAllowed) ?
-                            <Grid item xs={12} sm={12} md={6} lg={6} xl={6} alignContent="center" alignItems="center">
+                            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                                 <ContentContainer type="image" populateContent={this.state.images}
                                                   contentData={this.props.imageContent}/>
                             </Grid> : ''}
@@ -90,6 +91,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     fetchImagesProps: () => fetchImageContent(dispatch),
     fetchVideosProps: () => fetchVideoContent(dispatch),
+    fetchContentProps: () => fetchMainContent(dispatch),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

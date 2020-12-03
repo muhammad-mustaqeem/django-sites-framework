@@ -53,7 +53,7 @@ class UserAuthenticationViewSet(viewsets.ViewSet):
 
 class UserModelViewSet(viewsets.ModelViewSet):
     serializer_class = UserModelSerializer
-    queryset = CustomUser.objects.all()
+    queryset = CustomUser.on_site.all()
     lookup_field = 'id'
 
     @staticmethod

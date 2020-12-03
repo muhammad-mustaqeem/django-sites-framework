@@ -11,6 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import Container from "@material-ui/core/Container";
 import {uploadImageContent, uploadVideoContent} from "../api/contentApi";
+import Typography from "@material-ui/core/Typography";
 
 class UploadContentDialogBox extends Component {
     state = {
@@ -48,29 +49,25 @@ class UploadContentDialogBox extends Component {
 
     render() {
         return (
-            <Container component="main" maxWidth="md">
-                <Button variant="contained" color="default" startIcon={<CloudUploadIcon/>}
-                        onClick={this.handleToggle}>Upload</Button>
+            <Container component="main" maxWidth="md" minWidth="md">
+                <Button variant="contained" color="default" startIcon={<CloudUploadIcon/>} onClick={this.handleToggle}>Upload</Button>
                 <Dialog open={this.state.open} onClose={this.handleToggle}>
-                    <DialogTitle id="alert-dialog-title">UPLOAD new content</DialogTitle>
+                    <DialogTitle id="alert-dialog-title">
+                        <Typography variant='h5' component='h5' align='center'>Upload new content</Typography>
+                    </DialogTitle>
                     <DialogContent>
                         <DialogContentText id="alert-dialog-description">
                             <form>
                                 <Grid container spacing={1} alignContent="center">
                                     <Grid item xs={12}>
-                                        <TextField variant="outlined" margin="normal" required fullWidth id="caption"
-                                                   label="Caption" name="caption" autoComplete="caption" autoFocus
-                                                   onChange={this.handleChange} value={this.state.caption}/>
+                                        <TextField variant="outlined" margin="normal" required="true" fullWidth id="caption" label="Caption" name="caption" autoComplete="caption" autoFocus onChange={this.handleChange} value={this.state.caption}/>
                                     </Grid>
                                     <Grid item xs={12} alignContent="center">
                                         {(this.props.type === "image") ?
-                                            <input accept="image/*" id="contentUploader" type="file"
-                                                   style={{display: 'none'}} onChange={this.handleFileUpload}/> :
-                                            <input accept="video/mp4,video/x-m4v,video/*" id="contentUploader"
-                                                   type="file" style={{display: 'none'}}
-                                                   onChange={this.handleFileUpload}/>}
+                                            <input accept="image/*" id="contentUploader" type="file" style={{display: 'none'}} onChange={this.handleFileUpload}/> :
+                                            <input accept="video/mp4,video/x-m4v,video/*" id="contentUploader" type="file" style={{display: 'none'}} onChange={this.handleFileUpload}/>}
                                         <label htmlFor="contentUploader">
-                                            <Button variant="contained" color="primary" component="span">Upload</Button>
+                                            <Button variant="outlined" color="primary" component="span" fullWidth>Select File</Button>
                                         </label>
                                     </Grid>
                                     <Grid item xs={12}>

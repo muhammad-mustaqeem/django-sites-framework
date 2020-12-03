@@ -77,7 +77,7 @@ class LoginForm extends Component {
                             <Button type="submit" fullWidth variant="contained" color="primary"
                                     onClick={this.handleSubmit}>Sign In</Button>
                         </Grid>
-                        <Grid item>
+                        <Grid item alignContent="center" alignItems="center" align="center">
                             <span>Don't have an account? <Link to="/register">Sign Up</Link></span>
                         </Grid>
                     </Grid>
@@ -96,7 +96,7 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { isAuthenticated } = state.user;
+    const {isAuthenticated} = state.user;
     return {isAuthenticated};
 }
 

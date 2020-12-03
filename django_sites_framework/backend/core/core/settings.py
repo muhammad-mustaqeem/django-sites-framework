@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'content',
     'custom_sites',
     'user',
+    'log',
 ]
 
 REST_FRAMEWORK = {
