@@ -2,6 +2,8 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const REGISTER_USER = 'REGISTER_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
+export const FETCH_CONTENT = 'FETCH_CONTENT';
+
 export const FETCH_IMAGES = 'FETCH_IMAGES';
 export const CREATE_IMAGE = 'CREATE_IMAGE';
 export const DELETE_IMAGE = 'DELETE_IMAGE';

@@ -1,5 +1,13 @@
-import {ImageContentUrl, VideoContentUrl} from "./urls";
-import {deleteImage, deleteVideo, fetchImages, fetchVideos, uploadImage, uploadVideo} from "../actions/contentActions";
+import {ImageContentUrl, MainContentUrl, VideoContentUrl} from "./urls";
+import {
+    deleteImage,
+    deleteVideo,
+    fetchContent,
+    fetchImages,
+    fetchVideos,
+    uploadImage,
+    uploadVideo
+} from "../actions/contentActions";
 import myHeaders from "./header";
 
 export const fetchImageContent = (dispatch) => {
@@ -7,6 +15,13 @@ export const fetchImageContent = (dispatch) => {
         method: 'GET',
     }).then(response => response.json())
         .then(json => dispatch(fetchImages(json)));
+}
+
+export const fetchMainContent = (dispatch) => {
+    fetch(MainContentUrl, {
+        method: 'GET',
+    }).then(response => response.json())
+        .then(json => dispatch(fetchContent(json)));
 }
 
 export const fetchVideoContent = (dispatch) => {

@@ -2,7 +2,7 @@ import {
     CREATE_IMAGE,
     CREATE_VIDEO,
     DELETE_IMAGE,
-    DELETE_VIDEO,
+    DELETE_VIDEO, FETCH_CONTENT,
     FETCH_IMAGES,
     FETCH_VIDEOS
 } from "../actions/actionTypes";
@@ -28,6 +28,18 @@ const contentReducer = (state = initialState, action) => {
                 ...state,
                 isImageContentAllowed: false,
             }
+        case FETCH_CONTENT:
+            let content = {...state};
+            if (action.payload.data.images_allowed){
+                content.imageContent = action.payload.data.images;
+                content.isImageContentAllowed = true;
+            }
+            if (action.payload.data.videos_allowed){
+                content.imageContent = action.payload.data.videos;
+                content.isVideoContentAllowed = true;
+            }
+            console.log('CONTENT API = ',content);
+            return content;
         case FETCH_VIDEOS:
             if (action.payload.status_code === 200) {
                 return {

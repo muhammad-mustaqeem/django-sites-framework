@@ -1,4 +1,12 @@
-import {CREATE_IMAGE, CREATE_VIDEO, DELETE_IMAGE, DELETE_VIDEO, FETCH_IMAGES, FETCH_VIDEOS} from "./actionTypes";
+import {
+    CREATE_IMAGE,
+    CREATE_VIDEO,
+    DELETE_IMAGE,
+    DELETE_VIDEO,
+    FETCH_CONTENT,
+    FETCH_IMAGES,
+    FETCH_VIDEOS
+} from "./actionTypes";
 
 export const fetchImages = (payload) => ({
     type: FETCH_IMAGES,
@@ -7,6 +15,11 @@ export const fetchImages = (payload) => ({
 
 export const fetchVideos = (payload) => ({
     type: FETCH_VIDEOS,
+    payload: payload
+});
+
+export const fetchContent = (payload) => ({
+    type: FETCH_CONTENT,
     payload: payload
 });
 
