@@ -4,7 +4,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 
-from utils import get_response
+from utils import get_response, get_current_custom_site
 from .models import CustomUser
 from .serializers import UserAuthSerializer, UserModelSerializer
 
@@ -20,7 +20,7 @@ def destroy_authentication_token(request):
 
 class UserAuthenticationViewSet(viewsets.ViewSet):
     serializer_class = UserAuthSerializer
-    queryset = CustomUser.objects.all()
+    queryset = CustomUser.on_site.all()
     permission_classes = (AllowAny,)
 
     @staticmethod
@@ -28,6 +28,9 @@ class UserAuthenticationViewSet(viewsets.ViewSet):
         if request.user.is_authenticated and request.user != 'AnonymousUser':
             return True
         return False
+
+    def user_allowed_sites(self, username):
+        print(CustomUser.objects.get(username=username).site)
 
     @action(methods=['POST', ], detail=False)
     def login(self, request, *args, **kwargs):
@@ -71,6 +74,7 @@ class UserModelViewSet(viewsets.ModelViewSet):
         serializer = UserModelSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             user = self.create_user(serializer.validated_data)
+            user.site.add(get_current_custom_site(request))
             return get_response(status.HTTP_201_CREATED, 'SUCCESS',
                                 data={'auth_token': create_authentication_token(user), 'user': serializer.data})
 

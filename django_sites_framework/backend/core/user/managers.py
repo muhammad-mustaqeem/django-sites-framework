@@ -1,4 +1,5 @@
 from django.contrib.auth.base_user import BaseUserManager
+from django.contrib.sites.managers import CurrentSiteManager
 
 
 class CustomUserManager(BaseUserManager):
@@ -24,3 +25,8 @@ class CustomUserManager(BaseUserManager):
         user.is_superuser = True
         user.save()
         return user
+
+
+class CustomUserSiteManager(CurrentSiteManager):
+    def get_by_natural_key(self, username):
+        return self.get(username=username)

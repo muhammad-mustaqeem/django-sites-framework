@@ -1,8 +1,10 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
+from django.contrib.sites.managers import CurrentSiteManager
 from django.db import models
 
-from .managers import CustomUserManager
+from .managers import CustomUserManager, CustomUserSiteManager
+from custom_sites.models import CustomSite
 
 
 class CustomUser(PermissionsMixin, AbstractBaseUser):
@@ -15,6 +17,9 @@ class CustomUser(PermissionsMixin, AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
 
+    site = models.ManyToManyField(CustomSite, related_name='get_site')
+
+    on_site = CustomUserSiteManager()
     objects = CustomUserManager()
 
     REQUIRED_FIELDS = ['email']
