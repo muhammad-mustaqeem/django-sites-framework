@@ -26,12 +26,12 @@ class HomePage extends Component {
     handleChange = field => {
         this.setState({...this.state, [field.target.name]: field.target.checked})
 
-        if (this.state.images) {
-            this.props.fetchImagesProps();
-        }
-        if (this.state.videos) {
-            this.props.fetchVideosProps();
-        }
+        // if (this.state.images) {
+        //     this.props.fetchImagesProps();
+        // }
+        // if (this.state.videos) {
+        //     this.props.fetchVideosProps();
+        // }
     }
 
     renderContent = () => {
@@ -44,14 +44,12 @@ class HomePage extends Component {
                         <Grid item xs={12}>
                             <FormGroup row centered>
                                 {(this.props.isImageContentAllowed) ? <FormControlLabel
-                                    control={<Switch checked={this.state.images} onChange={this.handleChange}
-                                                     name="images" color="primary"/>}
+                                    control={<Switch checked={this.state.images} onChange={this.handleChange} name="images" color="primary"/>}
                                     label="Fetch Images"
                                     labelPlacement="top"
                                 /> : ''}
                                 {(this.props.isVideoContentAllowed) ? <FormControlLabel
-                                    control={<Switch checked={this.state.videos} onChange={this.handleChange}
-                                                     name="videos" color="primary"/>}
+                                    control={<Switch checked={this.state.videos} onChange={this.handleChange} name="videos" color="primary"/>}
                                     label="Fetch Videos"
                                     labelPlacement="top"
                                 /> : ''}
@@ -59,13 +57,11 @@ class HomePage extends Component {
                         </Grid>
                         {(this.props.isImageContentAllowed) ?
                             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                <ContentContainer type="image" populateContent={this.state.images}
-                                                  contentData={this.props.imageContent}/>
+                                <ContentContainer type="image" populateContent={this.state.images} contentData={this.props.imageContent}/>
                             </Grid> : ''}
                         {(this.props.isVideoContentAllowed) ?
                             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                                <ContentContainer type="video" populateContent={this.state.videos}
-                                                  contentData={this.props.videoContent}/>
+                                <ContentContainer type="video" populateContent={this.state.videos} contentData={this.props.videoContent}/>
                             </Grid> : ''}
                     </Grid>
                 </Container>

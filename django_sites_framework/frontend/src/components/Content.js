@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import CancelIcon from '@material-ui/icons/Cancel';
 import {connect} from "react-redux";
 import {deleteImageContent, deleteVideoContent} from "../api/contentApi";
+import {baseUrl} from '../api/urls';
 
 const ContentImage = styled.img`
 max-width: 180px;
@@ -16,19 +17,22 @@ min-height: 180px;
 
 class Content extends Component {
     handleDelete = () => {
-        if (this.props.type === "image"){
+        if (this.props.type === "image") {
             this.props.deleteImageProp(this.props.content.id)
-        }else {
+        } else {
             this.props.deleteVideoProp(this.props.content.id)
         }
     }
+
     render() {
         return (
             <Grid container spacing={1}>
                 <Grid item xs={12} sm={12} md={6} lg={5} xl={5} align='center'>
-                    {(this.props.type === "image")?
-                        <ContentImage src={this.props.content.file} alt={this.props.content.caption}/>:
-                        <video width="230" height="180" controls><source src={this.props.content.file}/></video>
+                    {(this.props.type === "image") ?
+                        <ContentImage src={baseUrl + this.props.content.file} alt={this.props.content.caption}/> :
+                        <video width="230" height="180" controls>
+                            <source src={baseUrl + this.props.content.file}/>
+                        </video>
                     }
                 </Grid>
                 <Grid item xs={11} sm={11} md={5} lg={6} xl={6}>
@@ -42,9 +46,9 @@ class Content extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch =>({
-    deleteImageProp : (data) => deleteImageContent(dispatch, data),
-    deleteVideoProp : (data) => deleteVideoContent(dispatch, data),
+const mapDispatchToProps = dispatch => ({
+    deleteImageProp: (data) => deleteImageContent(dispatch, data),
+    deleteVideoProp: (data) => deleteVideoContent(dispatch, data),
 })
 
-export default connect(null,mapDispatchToProps)(Content);
+export default connect(null, mapDispatchToProps)(Content);

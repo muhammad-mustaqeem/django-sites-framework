@@ -2,7 +2,8 @@ import {
     CREATE_IMAGE,
     CREATE_VIDEO,
     DELETE_IMAGE,
-    DELETE_VIDEO, FETCH_CONTENT,
+    DELETE_VIDEO,
+    FETCH_CONTENT,
     FETCH_IMAGES,
     FETCH_VIDEOS
 } from "../actions/actionTypes";
@@ -30,15 +31,26 @@ const contentReducer = (state = initialState, action) => {
             }
         case FETCH_CONTENT:
             let content = {...state};
-            if (action.payload.data.images_allowed){
-                content.imageContent = action.payload.data.images;
-                content.isImageContentAllowed = true;
+            // console.log('JSON DATA = ', action.payload.data)
+            // console.log('IMAGE JSON DATA = ', [...action.payload.data.images])
+            // console.log('VIDEO JSON DATA = ', action.payload.data.videos)
+            // console.log('CONTENT DATA = ', content)
+
+            if (action.payload.data.images_allowed) {
+                content = {
+                    ...content,
+                    imageContent: action.payload.data.images,
+                    isImageContentAllowed: true,
+                }
             }
-            if (action.payload.data.videos_allowed){
-                content.imageContent = action.payload.data.videos;
-                content.isVideoContentAllowed = true;
+            if (action.payload.data.videos_allowed) {
+                content = {
+                    ...content,
+                    videoContent: action.payload.data.videos,
+                    isVideoContentAllowed: true,
+                }
             }
-            console.log('CONTENT API = ',content);
+            console.log('STATE DATA = ', content);
             return content;
         case FETCH_VIDEOS:
             if (action.payload.status_code === 200) {
