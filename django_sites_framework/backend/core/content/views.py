@@ -125,9 +125,7 @@ class ListContent(views.APIView):
         return get_current_custom_site(self.request).allow_images
 
     def get(self, request):
-        print(request.method)
         data = {'images_allowed': False, 'videos_allowed': False, }
-
         if self.image_operations_allowed():
             images = Image.on_site.filter(is_active=True).prefetch_related('site')
             data['images'] = ImageSerializer(images, many=True).data

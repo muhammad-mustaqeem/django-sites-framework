@@ -31,11 +31,6 @@ const contentReducer = (state = initialState, action) => {
             }
         case FETCH_CONTENT:
             let content = {...state};
-            // console.log('JSON DATA = ', action.payload.data)
-            // console.log('IMAGE JSON DATA = ', [...action.payload.data.images])
-            // console.log('VIDEO JSON DATA = ', action.payload.data.videos)
-            // console.log('CONTENT DATA = ', content)
-
             if (action.payload.data.images_allowed) {
                 content = {
                     ...content,
@@ -50,7 +45,6 @@ const contentReducer = (state = initialState, action) => {
                     isVideoContentAllowed: true,
                 }
             }
-            console.log('STATE DATA = ', content);
             return content;
         case FETCH_VIDEOS:
             if (action.payload.status_code === 200) {

@@ -18,20 +18,11 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        // this.props.fetchImagesProps();
-        // this.props.fetchVideosProps();
         this.props.fetchContentProps();
     }
 
     handleChange = field => {
         this.setState({...this.state, [field.target.name]: field.target.checked})
-
-        // if (this.state.images) {
-        //     this.props.fetchImagesProps();
-        // }
-        // if (this.state.videos) {
-        //     this.props.fetchVideosProps();
-        // }
     }
 
     renderContent = () => {

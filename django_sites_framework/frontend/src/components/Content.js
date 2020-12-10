@@ -12,7 +12,6 @@ max-width: 180px;
 min-width: 180px;
 max-height: 180px;
 min-height: 180px;
-
 `;
 
 class Content extends Component {

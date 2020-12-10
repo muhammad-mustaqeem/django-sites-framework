@@ -11,6 +11,7 @@ class OperationalLog(models.Model):
     request_url = models.CharField(max_length=50)
     was_success = models.BooleanField(default=True)
     executed_on = models.DateTimeField(auto_now_add=True)
+
     site = models.ForeignKey(CustomSite, on_delete=models.CASCADE)
 
     on_site = CurrentSiteManager()

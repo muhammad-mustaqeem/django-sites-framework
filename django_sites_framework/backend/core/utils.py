@@ -13,8 +13,15 @@ def get_current_custom_site(request):
     return CustomSite.objects.get_current(request)
 
 
-def create_log_entry(self, request, success):
+def video_operations_allowed(self):
+    return get_current_custom_site(self.request).allow_videos
 
+
+def image_operations_allowed(self):
+    return get_current_custom_site(self.request).allow_images
+
+
+def create_log_entry(self, request, success):
     log = OperationalLog(user=CustomUser.objects.get(id=1),
                          request_url=request.build_absolute_uri(),
                          request_type=request.method,
