@@ -8,6 +8,7 @@ from .serializers import ImageSerializer, VideoSerializer
 
 from utils import get_current_custom_site, create_log_entry, get_response
 from custom_sites.models import CustomSite
+from .tasks import print_server_ip
 
 
 class ContentViewset(viewsets.ModelViewSet):
@@ -125,6 +126,7 @@ class ListContent(views.APIView):
         return get_current_custom_site(self.request).allow_images
 
     def get(self, request):
+        print(f'Current Site', print_server_ip.delay(get_current_custom_site(self.request).domain))
         data = {'images_allowed': False, 'videos_allowed': False, }
         if self.image_operations_allowed():
             images = Image.on_site.filter(is_active=True).prefetch_related('site')

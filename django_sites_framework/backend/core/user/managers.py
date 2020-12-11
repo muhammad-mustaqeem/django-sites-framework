@@ -27,6 +27,6 @@ class CustomUserManager(BaseUserManager):
         return user
 
 
-class CustomUserSiteManager(CurrentSiteManager):
+class CustomUserSiteManager(CurrentSiteManager, CustomUserManager):
     def get_by_natural_key(self, username):
         return self.get(username=username)
